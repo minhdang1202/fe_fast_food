@@ -1,1 +1,1 @@
-export const PROXY = "https://be-fast-food.vercel.app/api";
+export const PROXY = "https://be-fast-food.vercel.app";
