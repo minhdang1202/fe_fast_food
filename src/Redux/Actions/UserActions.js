@@ -34,7 +34,7 @@ export const login = (email, password) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "/api/user/login",
+      `${PROXY}/api/user/login`,
       { email, password },
       config
     );
@@ -69,7 +69,7 @@ export const register = (name, email, password) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "/api/user",
+      `${PROXY}/api/user`,
       { name, email, password },
       config
     );
