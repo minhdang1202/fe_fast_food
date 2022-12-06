@@ -19,7 +19,7 @@ import {
   PRODUCT_LIST_SUCCESS,
 } from "../Constants/ProductContants";
 import axios from "axios";
-
+import { PROXY } from "../Constants/ProxyContant";
 export const listProduct =
   (searchTerm = "", pageNumber, sort) =>
   async (dispatch) => {
@@ -76,7 +76,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.delete(`/api/product/${id}`, config);
+    await axios.delete(`${PROXY}/api/product/${id}`, config);
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (error) {
     dispatch({
@@ -103,7 +103,7 @@ export const createProduct = (product) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/product`, product, config);
+    const { data } = await axios.post(`${PROXY}/api/product`, product, config);
     dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -131,7 +131,7 @@ export const editProduct = (product) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.put(
-      `/api/product/${product._id}`,
+      `${PROXY}/api/product/${product._id}`,
       product,
       config
     );
@@ -162,7 +162,11 @@ export const createReviewProduct =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.post(`/api/product/${productID}/review`, review, config);
+      await axios.post(
+        `${PROXY}/api/product/${productID}/review`,
+        review,
+        config
+      );
       dispatch({ type: PRODUCT_CREATE_REVIEW_SUCCESS });
     } catch (error) {
       dispatch({

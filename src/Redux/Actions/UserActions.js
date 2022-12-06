@@ -1,4 +1,5 @@
 import axios from "axios";
+import { PROXY } from "../Constants/ProxyContant";
 
 import {
   USERS_CHANGE_ROLE_FAIL,
@@ -21,7 +22,6 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
 } from "../Constants/UserContants";
-
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -54,7 +54,7 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
- 
+
   dispatch({ type: USER_LOGOUT });
 };
 
@@ -103,7 +103,11 @@ export const getProfile = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/user/profile`, config, userInfo);
+    const { data } = await axios.get(
+      `${PROXY}/api/user/profile`,
+      config,
+      userInfo
+    );
 
     dispatch({ type: USER_PROFILE_SUCCESS, payload: data });
 
@@ -138,7 +142,11 @@ export const updateProfile = (user) => async (dispatch, getState) => {
       _id: userInfo._id,
     };
 
-    const { data } = await axios.put(`/api/user/profile`, userUpdate, config);
+    const { data } = await axios.put(
+      `${PROXY}/api/user/profile`,
+      userUpdate,
+      config
+    );
     dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
@@ -167,7 +175,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/user`, config);
+    const { data } = await axios.get(`${PROXY}/api/user`, config);
     dispatch({ type: USERS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -195,7 +203,11 @@ export const changeRoleUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/user/${id}`, userInfo, config);
+    const { data } = await axios.post(
+      `${PROXY}/api/user/${id}`,
+      userInfo,
+      config
+    );
     dispatch({ type: USERS_CHANGE_ROLE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

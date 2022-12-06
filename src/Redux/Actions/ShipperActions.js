@@ -1,4 +1,5 @@
 import axios from "axios";
+import { PROXY } from "../Constants/ProxyContant";
 import {
   CHANGE_FILTER,
   CHOOSE_SHIPPER_FAIL,
@@ -26,7 +27,7 @@ export const chooseShipper = (id) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.put(
-      `/api/orders/${id}/shipping`,
+      `${PROXY}/api/orders/${id}/shipping`,
       userInfo,
       config
     );

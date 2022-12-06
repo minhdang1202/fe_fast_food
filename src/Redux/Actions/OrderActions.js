@@ -26,6 +26,7 @@ import {
   ORDER_USER_ALL_REQUEST,
   ORDER_USER_ALL_SUCCESS,
 } from "../Constants/OrderConstants";
+import { PROXY } from "../Constants/ProxyContant";
 import { logout } from "./UserActions";
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -42,7 +43,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post("/api/orders", order, config);
+    const { data } = await axios.post(`${PROXY}/api/orders`, order, config);
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
     dispatch({ type: CLEAR_ITEMS, payload: data });
@@ -73,7 +74,7 @@ export const findOrder = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/orders/${id}`, config);
+    const { data } = await axios.get(`${PROXY}/api/orders/${id}`, config);
     dispatch({ type: ORDER_DETAIL_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -102,7 +103,7 @@ export const findAllOrderUser = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/orders`, config);
+    const { data } = await axios.get(`${PROXY}/api/orders`, config);
 
     dispatch({ type: ORDER_USER_ALL_SUCCESS, payload: data });
   } catch (error) {
@@ -132,7 +133,7 @@ export const getAllOrder = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/orders/all`, config);
+    const { data } = await axios.get(`${PROXY}/api/orders/all`, config);
 
     dispatch({ type: ORDER_ADMIN_ALL_SUCCESS, payload: data });
   } catch (error) {
@@ -162,7 +163,7 @@ export const deliveredOrder = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.put(`/api/orders/${id}/delivered`, userInfo, config);
+    await axios.put(`${PROXY}/api/orders/${id}/delivered`, userInfo, config);
 
     dispatch({ type: ORDER_DELIVERED_SUCCESS });
   } catch (error) {
@@ -191,7 +192,7 @@ export const paidOrder = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.put(`/api/orders/${id}/paid`, userInfo, config);
+    await axios.put(`${PROXY}/api/orders/${id}/paid`, userInfo, config);
 
     dispatch({ type: ORDER_PAID_SUCCESS });
   } catch (error) {
@@ -222,7 +223,7 @@ export const changeStatusOrder = (id, status) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.put(
-      `/api/orders/${id}/status`,
+      `${PROXY}/api/orders/${id}/status`,
       { status: status },
       config
     );
@@ -256,7 +257,7 @@ export const filterOrder = (day, status) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(
-      `/api/orders/all/filter?day=${day}&status=${status}`,
+      `${PROXY}/api/orders/all/filter?day=${day}&status=${status}`,
       config
     );
 
