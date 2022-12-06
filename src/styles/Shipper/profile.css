@@ -1,0 +1,63 @@
+.btn-chartjs {
+  background-color: #f27173 !important;
+  border-color: #f27173 !important;
+  color: white !important;
+}
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #3f4254;
+}
+
+.btn {
+  font-size: 0.8rem !important;
+}
+.image-input-wrapper {
+  border: 3px solid #ffffff;
+  box-shadow: 0 0.5rem 1.5rem 0.5rem rgb(0 0 0 / 8%);
+  width: 120px;
+  height: 120px;
+  border-radius: 0.675rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: -4px;
+  left: 8px;
+  position: absolute;
+}
+.btn.btn-white.btn-shadow {
+  box-shadow: 0px 9px 16px 0px rgb(24 28 50 / 25%) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -13px;
+  left: 109px;
+}
+input[type="file"] {
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden;
+  opacity: 0;
+}
+.btn.btn-icon.btn-xs {
+  height: 24px;
+  width: 24px;
+}
+.fa.fa-pen {
+  color: #b5b5c3 !important;
+  font-size: 0.75rem;
+}
+.progress {
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  line-height: 0;
+  font-size: 0.75rem;
+  background-color: #ebedf3;
+  border-radius: 0.675rem;
+  box-shadow: none;
+}
+.progressBar {
+  margin-left: -3px;
+  margin-top: 6px;
+}

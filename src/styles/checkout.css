@@ -1,0 +1,42 @@
+.checkout__bill {
+  background: #fde4e4;
+  padding: 30px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 16%);
+}
+
+.checkout__payment {
+  background: #fde4e4;
+  padding: 30px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 16%);
+  margin-top: 20px;
+}
+
+.checkout__total {
+  border-top: 1px solid #ddd;
+  padding-top: 30px;
+}
+.checkout__method {
+  border-top: 1px solid #ddd;
+  padding-top: 30px;
+}
+.checkout__method > label {
+  margin-left: 10px;
+}
+
+.btn__payment {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.btn__payment:hover {
+  color: #dee2e6;
+}
+
+@media only screen and (max-width: 768px) {
+  .checkout__bill h6 {
+    font-size: 0.9rem;
+  }
+  .checkout__bill {
+    margin-top: 40px;
+  }
+}

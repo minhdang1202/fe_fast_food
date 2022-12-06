@@ -1,0 +1,7 @@
+export const ADD_ITEM = "ADD_ITEM";
+export const REMOVE_ITEM = "REMOVE_ITEM";
+export const CLEAR_ITEMS = "CLEAR_ITEMS";
+export const DELETE_ITEM = "DELETE_ITEM";
+
+export const SAVE_SHIPPING_ADDRESS = "SAVE_SHIPPING_ADDRESS";
+export const SAVE_PAYMENT_METHOD = "SAVE_PAYMENT_METHOD";

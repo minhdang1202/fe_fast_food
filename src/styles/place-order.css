@@ -1,0 +1,30 @@
+.order-box {
+  height: 75px;
+  display: flex;
+  border-radius: 50%;
+  width: 75px;
+  justify-content: center;
+  align-items: center;
+}
+.w-33 {
+  width: 33%;
+}
+
+.info {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 3.5px;
+}
+
+.btn_confirm {
+  margin-top: 25px;
+  background: #fde4e4;
+  padding: 5px;
+  border: none;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 16%);
+}
+
+.btn_confirm > h6 {
+  padding: 5px;
+  margin: 0;
+}
