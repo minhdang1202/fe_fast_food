@@ -28,7 +28,7 @@ export const listProduct =
         type: PRODUCT_LIST_REQUEST,
       });
       const { data } = await axios.get(
-        `/api/product?keyword=${searchTerm}&pageNumber=${pageNumber}&sort=${sort}`
+        `https://be-fast-food.vercel.app/api/product?keyword=${searchTerm}&pageNumber=${pageNumber}&sort=${sort}`
       );
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
@@ -47,7 +47,9 @@ export const productDetail = (id) => async (dispatch) => {
     dispatch({
       type: PRODUCT_DETAIL_REQUEST,
     });
-    const { data } = await axios.get(`/api/product/${id}`);
+    const { data } = await axios.get(
+      `https://be-fast-food.vercel.app/api/product/${id}`
+    );
     dispatch({ type: PRODUCT_DETAIL_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
