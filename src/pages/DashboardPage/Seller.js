@@ -6,22 +6,22 @@ import { getAllOrder } from "../../Redux/Actions/OrderActions";
 import "../../styles/Sell.css";
 const Seller = () => {
   const orderAdminAll = useSelector((state) => state.orderAdminAll);
-  const { orders } = orderAdminAll;
+  const { total, totalSale } = orderAdminAll;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllOrder());
+    dispatch(getAllOrder(1, 1));
   }, [dispatch]);
   return (
     <section className="content-main" style={{ maxWidth: "1200px" }}>
       <div className="content-header">
         <h2 className="content-title">Selling</h2>
       </div>
-      <TopTotal orders={orders} />
+      <TopTotal totalSale={totalSale} total={total} />
       <div className="row">
         <table className="table ">
           <thead>
-            <tr className="title-table">
+            <tr className="title_table">
               <th scope="col">Tên nguyên liệu</th>
               <th scope="col">Đã nhập</th>
               <th scope="col">Đã tiêu thụ</th>
@@ -32,7 +32,7 @@ const Seller = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="title-table">
+            <tr className="title_table">
               <td>
                 <b>Bột mì</b>
               </td>
@@ -42,7 +42,7 @@ const Seller = () => {
               <td>0kg</td>
               <td>30kg</td>
             </tr>
-            <tr className="title-table">
+            <tr className="title_table">
               <td>
                 <b>Bột áo</b>
               </td>
@@ -53,7 +53,7 @@ const Seller = () => {
 
               <td>3kg</td>
             </tr>
-            <tr className="title-table">
+            <tr className="title_table">
               <td>
                 <b>Mật ong</b>
               </td>
@@ -63,7 +63,7 @@ const Seller = () => {
               <td>1kg</td>
               <td>3kg</td>
             </tr>
-            <tr className="title-table">
+            <tr className="title_table">
               <td>
                 <b>Men nở</b>
               </td>
@@ -73,7 +73,7 @@ const Seller = () => {
               <td>0kg</td>
               <td>0kg</td>
             </tr>
-            <tr className="title-table">
+            <tr className="title_table">
               <td>
                 <b>Cà chua</b>
               </td>
@@ -83,7 +83,7 @@ const Seller = () => {
               <td>0kg</td>
               <td>13kg</td>
             </tr>
-            <tr className="title-table">
+            <tr className="title_table">
               <td>
                 <b>Phô mai</b>
               </td>
@@ -93,7 +93,7 @@ const Seller = () => {
               <td>0kg</td>
               <td>1kg</td>
             </tr>
-            <tr className="title-table">
+            <tr className="title_table">
               <td>
                 <b>Thịt, hải sản</b>
               </td>
@@ -103,7 +103,7 @@ const Seller = () => {
               <td>4kg</td>
               <td>26kg</td>
             </tr>
-            <tr className="title-table">
+            <tr className="title_table">
               <td>
                 <b>Trứng</b>
               </td>

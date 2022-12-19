@@ -106,13 +106,13 @@ export const createProduct = (product) => async (dispatch, getState) => {
     const { data } = await axios.post(`${PROXY}/api/product`, product, config);
     dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({
-      type: PRODUCT_CREATE_FAIL,
-      payload:
-        error.response && error.response.data
-          ? error.response.data
-          : error.message,
-    });
+    // dispatch({
+    //   type: PRODUCT_CREATE_FAIL,
+    //   payload:
+    //     error.response && error.response.data
+    //       ? error.response.data
+    //       : error.message,
+    // });
   }
 };
 export const editProduct = (product) => async (dispatch, getState) => {

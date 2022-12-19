@@ -13,6 +13,8 @@ const MainProducts = () => {
     (state) => state.productList
   );
   const [pageNumber, setPageNumber] = useState(page);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sort, setSort] = useState(0);
 
   const productDelete = useSelector((state) => state.productDelete);
   const {
@@ -24,11 +26,19 @@ const MainProducts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(listProduct("", pageNumber));
-  }, [dispatch, pageNumber, successDelete]);
+    dispatch(listProduct(searchTerm, pageNumber, sort));
+  }, [dispatch, pageNumber, successDelete, sort]);
 
   const handleSelected = (selected) => {
     setPageNumber(selected);
+  };
+
+  const onSearchHandle = () => {
+    dispatch(listProduct(searchTerm, pageNumber, sort));
+  };
+
+  const changeSorting = (e) => {
+    setSort(e.target.value);
   };
 
   return (
@@ -53,34 +63,52 @@ const MainProducts = () => {
           <div className="card mb-4 shadow-sm">
             <header className="card-header bg-white ">
               <div className="row gx-3 py-3">
-                <div className="col-lg-4 col-md-6 me-auto ">
+                {/* <div className="col-lg-4 col-md-6 me-auto ">
                   <input
                     type="search"
                     placeholder="Search..."
                     className="form-control p-2"
                   />
-                </div>
-                <div className="col-lg-2 col-6 col-md-3">
-                  <select className="form-select">
-                    <option>All category</option>
-                    <option>Pizza</option>
-                    <option>Buffer</option>
-                    <option>Bread</option>
-                  </select>
-                </div>
-                <div className="col-lg-2 col-6 col-md-3">
-                  <select className="form-select">
-                    <option>Latest added</option>
-                    <option>Cheap first</option>
-                    <option>Most viewed</option>
-                  </select>
-                </div>
+                </div> */}
+                <Col lg="6" md="6" sm="6" xs="12">
+                  <form
+                    className="search__widget d-flex align-items-center justify-content-between "
+                    onSubmit={onSearchHandle}
+                  >
+                    <input
+                      type="text"
+                      placeholder="I'm looking for...."
+                      value={searchTerm}
+                      style={{ width: "95%" }}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <button className="btn_search" type="submit">
+                      <i className="ri-search-line"></i>
+                    </button>
+                  </form>
+                </Col>
+                <Col lg="6" md="6" sm="6" xs="12" className="mb-5">
+                  <div className="sorting__widget text-end">
+                    <select
+                      className="w-50 outline-none"
+                      onChange={changeSorting}
+                      value={sort}
+                    >
+                      <option value={0} hidden>
+                        Default
+                      </option>
+                      <option value={1}>Alphabetically, A-Z</option>
+                      <option value={2}>Alphabetically, Z-A</option>
+                      <option value={3}>High Price</option>
+                      <option value={4}>Low Price</option>
+                    </select>
+                  </div>
+                </Col>
               </div>
             </header>
 
             <div className="card-body">
               <div className="row">
-                {/* Products */}
                 {products?.map((product) => (
                   <Product product={product} key={product._id} />
                 ))}

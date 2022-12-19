@@ -11,20 +11,25 @@ import { getProfile } from "../Redux/Actions/UserActions";
 import Loading from "../components/LoadingError/Loading";
 import Message from "../components/LoadingError/Error";
 import { findAllOrderUser } from "../Redux/Actions/OrderActions";
+import PaginationComponent from "react-reactstrap-pagination";
 
 const ProfileScreen = () => {
   const userProfile = useSelector((state) => state.userProfile);
   const { profile, loading, error } = userProfile;
   const allOrderUser = useSelector((state) => state.allOrderUser);
-  const { orders } = allOrderUser;
+  const { orders, total } = allOrderUser;
 
   const [isProfile, setIsProfile] = useState(true);
+  const [pageNumber, setPageNumber] = useState(1);
+  const handleSelected = (selected) => {
+    setPageNumber(selected);
+  };
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProfile());
-    dispatch(findAllOrderUser());
-  }, [dispatch]);
+    dispatch(findAllOrderUser(7, pageNumber));
+  }, [dispatch, pageNumber]);
 
   return (
     <Helmet title="Profile">
@@ -86,7 +91,7 @@ const ProfileScreen = () => {
                       }}
                     >
                       Orders List
-                      <span className="badge2">{orders?.length}</span>
+                      <span className="badge2">{total}</span>
                     </button>
                   </div>
                 </div>
@@ -111,6 +116,14 @@ const ProfileScreen = () => {
                   aria-labelledby="v-pills-profile-tab"
                 >
                   <Orders orders={orders} />
+                  <PaginationComponent
+                    className="float-end mt-4"
+                    totalItems={total}
+                    pageSize={7}
+                    onSelect={handleSelected}
+                    maxPaginationNumbers={4}
+                    defaultActivePage={pageNumber}
+                  />
                 </div>
               )}
             </Col>

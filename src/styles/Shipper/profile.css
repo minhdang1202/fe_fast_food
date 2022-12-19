@@ -33,7 +33,7 @@
   top: -13px;
   left: 109px;
 }
-input[type="file"] {
+.inputAvatar {
   width: 0 !important;
   height: 0 !important;
   overflow: hidden;

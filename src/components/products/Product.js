@@ -16,7 +16,11 @@ const Product = (props) => {
         <div className="card card-product-grid shadow-sm">
           <Link to="#" className="img-wrap">
             <img
-              src="https://res.cloudinary.com/minhdang1202/image/upload/v1667236680/gabhngtwprwlzo6tjcmx.png"
+              src={
+                product?.images
+                  ? product?.images[0]
+                  : "https://res.cloudinary.com/minhdang1202/image/upload/v1667236680/gabhngtwprwlzo6tjcmx.png"
+              }
               alt="Product"
             />
           </Link>

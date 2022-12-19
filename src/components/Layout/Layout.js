@@ -30,7 +30,7 @@ const Layout = () => {
       <Toaster style={{ zIndex: 101 }} />
       <Header role={userInfo?.role} />
       {userInfo && userInfo?.role === 0 && <Sidebar />}
-      {userInfo && userInfo?.role === 2 && <SidebarShipper />}
+      {/* {userInfo && userInfo?.role === 2 && <SidebarShipper />} */}
       {showCart && <Carts />}
       {userInfo && userInfo?.role === 0 ? (
         <main className="main-wrap">
@@ -38,7 +38,7 @@ const Layout = () => {
           <RoutersAdmin role={userInfo?.role} />
         </main>
       ) : userInfo && userInfo?.role === 2 ? (
-        <main className="main-wrap">
+        <main>
           <HeaderShipper role={userInfo?.role} />
           <RouterShipper />
         </main>

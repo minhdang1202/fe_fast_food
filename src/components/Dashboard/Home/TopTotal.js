@@ -3,12 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { listProduct } from "../../../Redux/Actions/ProductActions";
 
-const TopTotal = ({ orders }) => {
-  let totalSale = 0;
-
-  orders?.map((order) =>
-    order.isPaid === true ? (totalSale = totalSale + order.totalAmount) : null
-  );
+const TopTotal = ({ total, totalSale }) => {
   const { products } = useSelector((state) => state.productList);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -39,7 +34,7 @@ const TopTotal = ({ orders }) => {
             </span>
             <div className="text">
               <h6 className="mb-1">Total Orders</h6>
-              <span>{orders?.length}</span>
+              <span>{total}</span>
             </div>
           </article>
         </div>

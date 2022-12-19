@@ -69,12 +69,19 @@ export const orderReducers = (state = { orders: [] }, action) => {
   }
 };
 
-export const orderUserAllReducers = (state = {}, action) => {
+export const orderUserAllReducers = (
+  state = { orders: [], total: 0 },
+  action
+) => {
   switch (action.type) {
     case ORDER_USER_ALL_REQUEST:
       return { loading: true };
     case ORDER_USER_ALL_SUCCESS:
-      return { loading: false, orders: action.payload };
+      return {
+        loading: false,
+        orders: action.payload.orders,
+        total: action.payload.total,
+      };
     case ORDER_USER_ALL_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -112,12 +119,20 @@ export const orderPaidReducers = (state = {}, action) => {
   }
 };
 
-export const orderAdminAllReducers = (state = { orders: [] }, action) => {
+export const orderAdminAllReducers = (
+  state = { orders: [], total: 0, totalSale: 0 },
+  action
+) => {
   switch (action.type) {
     case ORDER_ADMIN_ALL_REQUEST:
       return { loading: true };
     case ORDER_ADMIN_ALL_SUCCESS:
-      return { loading: false, orders: action.payload };
+      return {
+        loading: false,
+        orders: action?.payload?.order,
+        total: action?.payload?.total,
+        totalSale: action?.payload?.totalSale,
+      };
     case ORDER_ADMIN_ALL_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -140,12 +155,20 @@ export const orderChangeStatusReducers = (state = {}, action) => {
   }
 };
 
-export const orderFilterReducers = (state = { orders: [] }, action) => {
+export const orderFilterReducers = (
+  state = { orders: [], total: 0 },
+  action
+) => {
   switch (action.type) {
     case ORDER_FILTER_REQUEST:
       return { loading: true };
     case ORDER_FILTER_SUCCESS:
-      return { loading: false, orders: action.payload, success: true };
+      return {
+        loading: false,
+        orders: action.payload.orders,
+        total: action.payload.total,
+        success: true,
+      };
     case ORDER_FILTER_FAIL:
       return { loading: false, error: action.payload };
     case ORDER_FILTER_RESET:

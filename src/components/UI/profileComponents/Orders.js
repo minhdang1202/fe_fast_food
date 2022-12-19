@@ -24,7 +24,7 @@ const Orders = ({ orders }) => {
               </tr>
             </thead>
             <tbody style={{ textAlign: "center" }}>
-              {orders.map((order, i) => (
+              {orders?.map((order, i) => (
                 <tr
                   className={`${
                     order?.isPaid ? "alert-success" : "alert-danger"

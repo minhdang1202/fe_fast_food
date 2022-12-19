@@ -43,9 +43,17 @@ const Orders = ({ orders }) => {
             </td>
             <td>
               {order?.isDelivered ? (
-                <span className="badge btn-success">Delivered</span>
+                <span className="badge btn-success">Giao hàng thành công</span>
               ) : (
-                <span className="badge btn-dark">Not delivered</span>
+                <span className="badge btn-dark">
+                  {order?.status === 0
+                    ? "Đã xác nhận"
+                    : order?.status === 1
+                    ? "Đang xử lý"
+                    : order?.status === 2
+                    ? "Đang giao hàng"
+                    : "Chưa xác nhận"}
+                </span>
               )}
             </td>
             <td className="d-flex justify-content-end align-item-center">

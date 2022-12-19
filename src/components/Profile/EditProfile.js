@@ -85,6 +85,7 @@ const EditProfile = ({ setShowInfo }) => {
                   <i className="fa fa-pen " />
                   <input
                     type="file"
+                    className="inputAvatar"
                     name="profile_avatar"
                     accept=".png, .jpg, .jpeg"
                     ref={fileInput}

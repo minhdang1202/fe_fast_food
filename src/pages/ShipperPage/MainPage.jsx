@@ -9,6 +9,7 @@ import RightSide from "../../components/Profile/RightSide";
 import { filterOrder } from "../../Redux/Actions/OrderActions";
 import "../../styles/Shipper/main.css";
 import Loading from "../../components/LoadingError/Loading";
+import PaginationComponent from "react-reactstrap-pagination";
 const MainPage = () => {
   const [titleStatus, setTitleStatus] = useState("gần đây");
 
@@ -19,12 +20,17 @@ const MainPage = () => {
   const { filter } = filterChange;
   const dispatch = useDispatch();
   const orderFilter = useSelector((state) => state.orderFilter);
-  const { orders, loading } = orderFilter;
+  const { orders, loading, total } = orderFilter;
+
+  const [pageNumber, setPageNumber] = useState(1);
+  const handleSelected = (selected) => {
+    setPageNumber(selected);
+  };
 
   useEffect(() => {
     if (filter === 0) setTitleStatus("gần đây");
     if (filter === 1) setTitleStatus("đang xử lý");
-    if (filter === 2) setTitleStatus("đã nhận");
+    if (filter === 2) setTitleStatus("đang giao");
     if (filter === 3) setTitleStatus("hoàn thành");
     if (filter === 4) setTitleStatus("bị hủy");
   }, [filter]);
@@ -104,72 +110,18 @@ const MainPage = () => {
           ) : (
             <section className="card-body pt-1 newsfeed">
               {orders?.length !== 0 ? (
-                <Orders orders={orders} />
+                <>
+                  <Orders orders={orders} />
+                  <PaginationComponent
+                    className="float-end mt-4"
+                    totalItems={total}
+                    pageSize={20}
+                    onSelect={handleSelected}
+                    maxPaginationNumbers={4}
+                    defaultActivePage={pageNumber}
+                  />
+                </>
               ) : (
-                // <InfiniteScroll
-                //     dataLength={items.length}
-                //     next={fetchMoreData}
-                //     hasMore={hasMore}
-                //     loader={items.length !== 0 && sortStatus.length > 5 && <SkeletonCard />}
-                //     endMessage={
-                //         items.length !== 0 && (
-                //             <p style={{ textAlign: 'center' }}>
-                //                 <span className="font-weight-bold">Yay! Hết cái để xem {subTitleStatus} rồi !</span>
-                //             </p>
-                //         )
-                //     }
-                // >
-                //     {items.map((data, index) => (
-                //         <>
-                //             <article
-                //                 className="order"
-                //                 key={index}
-                //                 onClick={() => {
-                //                     setDataModal(data);
-                //                     fetchDataShipper(data.id_post);
-                //                     setShow(true);
-                //                 }}
-                //             >
-                //                 <div className="d-flex align-items-start">
-                //                     <span className="bullet bullet-bar bg-orange align-self-stretch" />
-                //                     <div className="d-flex flex-column flex-grow-1 ml-4">
-                //                         <header className="card-title content">
-                //                             <span>#{data.id_post}</span>
-                //                             <span className="flex-shrink-0">
-                //                                 {dateToFromNowDaily(data.thoi_gian)}
-
-                //                             </span>
-                //                         </header>
-                //                         <section className="card-info content">
-                //                             <div className="mb-3">
-                //                                 <div className="mb-3">
-                //                                     <span className="font-weight-bold">{data.ten_nguoi_nhan}</span> -{' '}
-                //                                     <span className="font-weight-bold">{data.sdt_nguoi_nhan}</span>
-                //                                 </div>
-                //                                 <div className="mb-1">
-                //                                     Chi phí giao hàng:{' '}
-                //                                     <span className="font-weight-bold text-primary-2">{data.phi_giao}</span>
-                //                                 </div>
-                //                                 <div className="mb-1">
-                //                                     Tạm ứng: <span className="font-weight-bold text-chartjs">{data.phi_ung}</span>
-                //                                 </div>
-                //                             </div>
-                //                             <span className="delivery">Giao hàng tới</span>
-                //                             <div className="d-flex align-items-center justify-content-between">
-                //                                 <address className="mb-0 pl-0">{data.noi_giao}</address>
-                //                                 {data.status === '0' && <InProcessing />}
-                //                                 {data.status === '1' && <Picked />}
-                //                                 {data.status === '2' && <Completed />}
-                //                                 {data.status === '3' && <Cancelled />}
-                //                             </div>
-                //                         </section>
-                //                     </div>
-                //                 </div>
-                //                 <div className="separator separator-dashed my-5" />
-                //             </article>
-                //         </>
-                //     ))}
-                // </InfiniteScroll>
                 <article className="empty-order">
                   <span
                     className="text menu-in-progress"

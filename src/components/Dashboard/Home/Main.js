@@ -11,11 +11,11 @@ import Message from "../../LoadingError/Error";
 // import { io } from "socket.io-client";
 const Main = () => {
   const orderAdminAll = useSelector((state) => state.orderAdminAll);
-  const { orders, loading, error } = orderAdminAll;
+  const { orders, loading, error, total, totalSale } = orderAdminAll;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllOrder());
+    dispatch(getAllOrder(5, 1));
   }, [dispatch]);
 
   // const ENDPOINT = "http://localhost:5000";
@@ -37,7 +37,7 @@ const Main = () => {
             <h2 className="content-title"> Dashboard </h2>
           </div>
           {/* Top Total */}
-          <TopTotal orders={orders} />
+          <TopTotal totalSale={totalSale} total={total} />
 
           <div className="row">
             <SaleStatistics />

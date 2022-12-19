@@ -17,10 +17,11 @@ const UserComponent = () => {
   const { loading: changeRoleLoading, success } = userChangeRole;
   const [filterRole, setFilterRole] = useState(0);
   const [usersShow, setUsersShow] = useState(users);
-
+  const [searchUser, setSearchUser] = useState("");
+  const [search, setSearch] = useState("");
   useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch, success]);
+    dispatch(getAllUsers(searchUser));
+  }, [dispatch, success, searchUser]);
 
   useEffect(() => {
     Number(filterRole) === 0
@@ -29,6 +30,12 @@ const UserComponent = () => {
           users?.filter((user) => user?.role === Number(filterRole))
         );
   }, [filterRole, users]);
+
+  const handleKeyDownEnter = (e) => {
+    if (e.key === "Enter") {
+      setSearchUser(search);
+    }
+  };
 
   return (
     <section className="content-main">
@@ -44,6 +51,9 @@ const UserComponent = () => {
                 type="text"
                 placeholder="Search..."
                 className="form-control"
+                value={search}
+                onKeyDown={handleKeyDownEnter}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
 

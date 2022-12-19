@@ -10,6 +10,7 @@ import OrderDetailmain from "../pages/DashboardPage/OrderDetailmain";
 import UserComponent from "../pages/DashboardPage/UserComponent";
 import EditProductMain from "../pages/DashboardPage/EditproductMain";
 import Seller from "../pages/DashboardPage/Seller";
+import Test from "../pages/Test";
 const RoutersAdmin = ({ role }) => {
   return (
     <Routes>
@@ -19,11 +20,11 @@ const RoutersAdmin = ({ role }) => {
       <Route path="/admin" element={<AdminScreen />} />
       <Route path="/products" element={<MainProducts />} />
       <Route path="/addproduct" element={<AddProductMain />} />
-      <Route path="/category" element={<MainCategories />} />
       <Route path="/orders" element={<OrderMain />} />
       <Route path="/order/:id" element={<OrderDetailmain />} />
       <Route path="/users" element={<UserComponent />} />
       <Route path="/sell" element={<Seller />} />
+      <Route path="/test" element={<Test />} />
       <Route path="/product/:id/edit" element={<EditProductMain />} />
     </Routes>
   );

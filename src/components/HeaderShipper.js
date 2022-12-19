@@ -122,7 +122,7 @@ const HeaderShipper = ({ role }) => {
                       filter === 2 ? "active" : "none"
                     }`}
                   >
-                    Đã nhận đơn
+                    Đang giao
                   </span>
                 </Link>
 
@@ -218,18 +218,9 @@ const HeaderShipper = ({ role }) => {
               <i className="fas fa-times-circle text-danger-2 "></i>
             </Link>
           </div>
-
-          <div className="d-flex align-items-center py-3 py-lg-2">
-            <Link
-              to="/post-order"
-              className="btn btn-icon btn-light h-40px w-40px"
-            >
-              <i className="fad fa-file-alt pallette-purple"></i>
-            </Link>
-          </div>
         </div>
       </div>
-      <div className="col-nav">
+      {/* <div className="col-nav">
         <button
           className="btn-icon btn-mobile me-auto"
           data-trigger="#offcanvas_aside"
@@ -264,7 +255,7 @@ const HeaderShipper = ({ role }) => {
             </div>
           </li>
         </ul>
-      </div>
+      </div> */}
     </header>
   );
 };

@@ -160,33 +160,38 @@ export const updateProfile = (user) => async (dispatch, getState) => {
   }
 };
 
-export const getAllUsers = () => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: USERS_REQUEST,
-    });
-    const {
-      userLogin: { userInfo },
-    } = getState();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
+export const getAllUsers =
+  (keyword = "") =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: USERS_REQUEST,
+      });
+      const {
+        userLogin: { userInfo },
+      } = getState();
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
 
-    const { data } = await axios.get(`${PROXY}/api/user`, config);
-    dispatch({ type: USERS_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({
-      type: USERS_FAIL,
-      payload:
-        error.response && error.response.data
-          ? error.response.data
-          : error.message,
-    });
-  }
-};
+      const { data } = await axios.get(
+        `${PROXY}/api/user?search=${keyword}`,
+        config
+      );
+      dispatch({ type: USERS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: USERS_FAIL,
+        payload:
+          error.response && error.response.data
+            ? error.response.data
+            : error.message,
+      });
+    }
+  };
 
 export const changeRoleUser = (id) => async (dispatch, getState) => {
   try {

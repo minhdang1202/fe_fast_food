@@ -57,17 +57,7 @@ const Sidebar = () => {
                 <span className="text">Add product</span>
               </NavLink>
             </li>
-            <li className="menu-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "active menu-link" : "inactive menu-link"
-                }
-                to="/category"
-              >
-                <i className="icon fas fa-list"></i>
-                <span className="text">Categories</span>
-              </NavLink>
-            </li>
+
             <li className="menu-item">
               <NavLink
                 className={({ isActive }) =>

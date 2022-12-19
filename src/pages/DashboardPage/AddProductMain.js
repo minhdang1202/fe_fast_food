@@ -4,6 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Images from "../../components/Dashboard/Images";
 import Message from "../../components/LoadingError/Error";
 import Loading from "../../components/LoadingError/Loading";
 import { createProduct } from "../../Redux/Actions/ProductActions";
@@ -21,6 +22,8 @@ const AddProductMain = () => {
   const [ing, setIng] = useState("");
   const [mass, setMass] = useState(0);
   const [txtList, setTxtList] = useState("");
+  const [previewImage, setPreviewImage] = useState([]);
+
   useEffect(() => {
     if (success) {
       toast.success("New product created successfully!");
@@ -29,6 +32,9 @@ const AddProductMain = () => {
       setDescription("");
       setCategory("Pizza");
       setPrice(0);
+      setPreviewImage([]);
+      setTxtList("");
+      setListIngredient([]);
     }
   }, [dispatch, success]);
 
@@ -38,18 +44,32 @@ const AddProductMain = () => {
       description,
       category,
       price,
+      images: previewImage,
+      ingredients: listIngredient,
     };
     e.preventDefault();
     dispatch(createProduct(newProduct));
   };
 
   const addIngredient = () => {
-    setListIngredient([...listIngredient, `${ing}:${mass}`]);
-    setTxtList(txtList + " ; " + `${ing}:${mass}`);
-    setIng("");
-    setMass(0);
+    if (mass !== 0 && ing !== "") {
+      setListIngredient([
+        ...listIngredient,
+        { name: ing.trim().toLowerCase(), mass },
+      ]);
+      setTxtList(
+        txtList !== ""
+          ? txtList + ";" + `${ing.trim()}:${mass}`
+          : `${ing.trim()}:${mass}`
+      );
+      setIng("");
+      setMass(0);
+    } else {
+      toast.error(
+        mass === 0 ? "Khối lượng khác 0!" : "Phải nhập tên thành phần!"
+      );
+    }
   };
-  console.log(txtList);
   return (
     <section className="content-main" style={{ maxWidth: "1200px" }}>
       <form onSubmit={submitHandler}>
@@ -136,20 +156,17 @@ const AddProductMain = () => {
                   ></textarea>
                 </div>
                 <div className="mb-4">
-                  <label className="form-label">Images</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Inter Image URL"
+                  <Images
+                    previewImage={previewImage}
+                    setPreviewImage={setPreviewImage}
                   />
-                  <input className="form-control mt-3" type="file" />
                 </div>
                 <div className="d-flex">
                   <div
                     className="mb-4"
                     style={{ width: "48%", marginRight: "34px" }}
                   >
-                    <label className="form-label">Ingredient</label>
+                    <label className="form-label">Thành phần</label>
                     <input
                       className="form-control"
                       type="text"
@@ -158,7 +175,7 @@ const AddProductMain = () => {
                     />
                   </div>
                   <div className="mb-4" style={{ width: "48%" }}>
-                    <label className="form-label">Mass</label>
+                    <label className="form-label">Khối lượng</label>
                     <input
                       className="form-control"
                       type="number"
@@ -172,7 +189,7 @@ const AddProductMain = () => {
                     className="mb-4"
                     style={{ width: "70%", marginRight: "34px" }}
                   >
-                    <label className="form-label">List Ingredient</label>
+                    <label className="form-label">Danh sách thành phần</label>
                     <input
                       className="form-control"
                       type="text"
@@ -184,13 +201,13 @@ const AddProductMain = () => {
                     className="d-flex justify-content-center align-items-center"
                     style={{ width: "28%" }}
                   >
-                    <button
+                    <div
                       className="btn btn-primary"
                       style={{ height: "35px" }}
                       onClick={addIngredient}
                     >
                       Add
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>
