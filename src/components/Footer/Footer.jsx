@@ -19,8 +19,7 @@ const Footer = ({ role }) => {
               <img src={logo} alt="logo" />
               <h5>Fast Food</h5>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nesciunt pariatur accusamus
+                Come with us will have the best experience with the best food
               </p>
             </div>
           </Col>

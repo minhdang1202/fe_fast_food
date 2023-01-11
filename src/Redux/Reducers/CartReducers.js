@@ -63,6 +63,7 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
             price: newItem.price,
             quantity: 1,
             totalPrice: newItem.price,
+            image : newItem.images[0]
           },
         ];
         const totalAmount = Number(state.totalAmount) + Number(newItem.price);
@@ -86,6 +87,7 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
             _id: newItem._id,
             name: newItem.name,
             price: newItem.price,
+            image: newItem.image,
             quantity: existingItem.quantity + 1,
             totalPrice: Number(existingItem.totalPrice) + Number(newItem.price),
           },
@@ -132,6 +134,7 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
             _id: existedItem._id,
             name: existedItem.name,
             price: existedItem.price,
+            image: existedItem.image,
             quantity: existedItem.quantity - 1,
             totalPrice:
               Number(existedItem.totalPrice) - Number(existedItem.price),

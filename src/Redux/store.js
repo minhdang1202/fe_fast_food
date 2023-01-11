@@ -33,6 +33,7 @@ import {
   filterChangeReducer,
   shipperChooseReducers,
 } from "./Reducers/ShipperReducers";
+import { getAllIngReducers, ingAddReducers, ingAllReducers, ingRecommentReducers } from "./Reducers/IngReducer";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -59,6 +60,9 @@ const reducer = combineReducers({
   orderFilter: orderFilterReducers,
   userChangeRole: userChangeRoleReducer,
   shipperChoose: shipperChooseReducers,
+  ingsAll: ingAllReducers,
+  ingsAdd: ingAddReducers,
+  ingsRecomment: ingRecommentReducers,
 });
 const middleware = [thunk];
 

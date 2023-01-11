@@ -10,7 +10,7 @@ import product_05_image_01 from "../../../assets/images/product_04.jpg";
 import toast from "react-hot-toast";
 
 const ProductCard = (props) => {
-  const { _id, name, price } = props.item;
+  const { _id, name, price, images } = props.item;
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const addItemToCart = () => {
@@ -25,7 +25,7 @@ const ProductCard = (props) => {
   return (
     <div className="product__item">
       <div className="product__img">
-        <img src={product_05_image_01} alt="product-img" className="w-50" />
+        <img src={images[0]} alt="product-img" className="w-50" />
       </div>
 
       <div className="product__content">

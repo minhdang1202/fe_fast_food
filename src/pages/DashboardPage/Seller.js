@@ -1,21 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import TopTotal from "../../components/Dashboard/Home/TopTotal";
+import { getAllIng, ingsRecomment } from "../../Redux/Actions/IngAction";
 import { getAllOrder } from "../../Redux/Actions/OrderActions";
 import "../../styles/Sell.css";
 const Seller = () => {
   const orderAdminAll = useSelector((state) => state.orderAdminAll);
   const { total, totalSale } = orderAdminAll;
   const dispatch = useDispatch();
+  const {
+    ings,
+    loading: loadingAll,
+    error: errorAll,
+  } = useSelector((state) => state.ingsAll);
+ 
+  const {
+    ings: recomments,
+    loading: loadingRecomment,
+    error: errorRecomment,
+  } = useSelector((state) => state.ingsRecomment);
+   
+  
 
   useEffect(() => {
     dispatch(getAllOrder(1, 1));
+    dispatch(getAllIng());
+    dispatch(ingsRecomment());
   }, [dispatch]);
+
+  const list =[10.1,1.6,1.3,3.2,7,1,13.5,15,4];
+
   return (
     <section className="content-main" style={{ maxWidth: "1200px" }}>
       <div className="content-header">
         <h2 className="content-title">Selling</h2>
+        <Link to="/input" className="btn btn-primary">
+          Nhập hàng
+        </Link>
       </div>
       <TopTotal totalSale={totalSale} total={total} />
       <div className="row">
@@ -32,87 +55,18 @@ const Seller = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="title_table">
-              <td>
-                <b>Bột mì</b>
-              </td>
-              <td>30kg</td>
-              <td>28kg</td>
-              <td>2kg</td>
-              <td>0kg</td>
-              <td>30kg</td>
-            </tr>
-            <tr className="title_table">
-              <td>
-                <b>Bột áo</b>
-              </td>
-              <td>5kg</td>
-              <td>2kg</td>
-              <td>3kg</td>
-              <td>0kg</td>
-
-              <td>3kg</td>
-            </tr>
-            <tr className="title_table">
-              <td>
-                <b>Mật ong</b>
-              </td>
-              <td>1kg</td>
-              <td>2kg</td>
-              <td>0kg</td>
-              <td>1kg</td>
-              <td>3kg</td>
-            </tr>
-            <tr className="title_table">
-              <td>
-                <b>Men nở</b>
-              </td>
-              <td>5kg</td>
-              <td>1kg</td>
-              <td>4kg</td>
-              <td>0kg</td>
-              <td>0kg</td>
-            </tr>
-            <tr className="title_table">
-              <td>
-                <b>Cà chua</b>
-              </td>
-              <td>15kg</td>
-              <td>12kg</td>
-              <td>3kg</td>
-              <td>0kg</td>
-              <td>13kg</td>
-            </tr>
-            <tr className="title_table">
-              <td>
-                <b>Phô mai</b>
-              </td>
-              <td>10kg</td>
-              <td>5kg</td>
-              <td>5kg</td>
-              <td>0kg</td>
-              <td>1kg</td>
-            </tr>
-            <tr className="title_table">
-              <td>
-                <b>Thịt, hải sản</b>
-              </td>
-              <td>20kg</td>
-              <td>24kg</td>
-              <td>0kg</td>
-              <td>4kg</td>
-              <td>26kg</td>
-            </tr>
-            <tr className="title_table">
-              <td>
-                <b>Trứng</b>
-              </td>
-              <td>5kg</td>
-              <td>5kg</td>
-              <td>0kg</td>
-              <td>0kg</td>
-              <td>6kg</td>
-            </tr>
+            {ings?.map((item, index) => (
+              <tr className="title_table" key={index}>
+                <td>
+                  <b>{item?.name}</b>
+                </td>
+                <td>{item?.mass}kg</td>
+                <td>{list[index]}kg</td>
+                <td>{(item?.mass - list[index]).toFixed(1)}kg</td>
+                <td>0kg</td>
+                <td>{list[index]+2}kg</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

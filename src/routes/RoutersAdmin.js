@@ -11,6 +11,7 @@ import UserComponent from "../pages/DashboardPage/UserComponent";
 import EditProductMain from "../pages/DashboardPage/EditproductMain";
 import Seller from "../pages/DashboardPage/Seller";
 import Test from "../pages/Test";
+import InputMain from "../pages/DashboardPage/InputMain";
 const RoutersAdmin = ({ role }) => {
   return (
     <Routes>
@@ -26,6 +27,7 @@ const RoutersAdmin = ({ role }) => {
       <Route path="/sell" element={<Seller />} />
       <Route path="/test" element={<Test />} />
       <Route path="/product/:id/edit" element={<EditProductMain />} />
+      <Route path='/input' element={<InputMain />} />
     </Routes>
   );
 };

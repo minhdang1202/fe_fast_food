@@ -36,18 +36,18 @@ const featureData = [
   {
     title: "Quick Delivery",
     imgUrl: featureImg01,
-    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
+    desc: "Fast and completely free shipping",
   },
 
   {
     title: "Super Dine In",
     imgUrl: featureImg02,
-    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
+    desc: "The food delivered will still retain its taste",
   },
   {
     title: "Easy Pick Up",
     imgUrl: featureImg03,
-    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
+    desc: "Easily choose items with a variety of dishes ",
   },
 ];
 
@@ -118,8 +118,7 @@ const Home = () => {
                 </h1>
 
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui
-                  magni delectus tenetur autem, sint veritatis!
+                  Come with us will have the best experience with the best food
                 </p>
 
                 <div className="hero__btns d-flex align-items-center gap-5 mt-4">
@@ -173,12 +172,8 @@ const Home = () => {
                 we will <span>take care</span>
               </h2>
               <p className="mb-1 mt-4 feature__text">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor,
-                officiis?
-              </p>
-              <p className="feature__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aperiam, eius.{" "}
+                We will take care of you wholeheartedly and will make you most
+                satisfied!
               </p>
             </Col>
 
@@ -283,10 +278,9 @@ const Home = () => {
                   Why <span>Fast Food?</span>
                 </h2>
                 <p className="tasty__treat-desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorum, minus. Tempora reprehenderit a corporis velit,
-                  laboriosam vitae ullam, repellat illo sequi odio esse iste
-                  fugiat dolor, optio incidunt eligendi deleniti!
+                  We will bring you a wonderful and unforgettable experience
+                  with a smart sales system, a variety of dishes and ways to
+                  prepare them.
                 </p>
 
                 <ListGroup className="mt-4">
@@ -296,8 +290,7 @@ const Home = () => {
                       tasty foods
                     </p>
                     <p className="choose__us-desc">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Quia, voluptatibus.
+                      Materials are imported periodically on a weekly basis
                     </p>
                   </ListGroupItem>
 
@@ -307,8 +300,7 @@ const Home = () => {
                       support
                     </p>
                     <p className="choose__us-desc">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Qui, earum.
+                      Intuitive and professional dish rating system
                     </p>
                   </ListGroupItem>
 
@@ -318,8 +310,7 @@ const Home = () => {
                       location{" "}
                     </p>
                     <p className="choose__us-desc">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Qui, earum.
+                      You can order anytime, anywhere
                     </p>
                   </ListGroupItem>
                 </ListGroup>
@@ -354,11 +345,7 @@ const Home = () => {
                 <h2 className="testimonial__title mb-4">
                   What our <span>customers</span> are saying
                 </h2>
-                <p className="testimonial__desc">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Distinctio quasi qui minus quos sit perspiciatis inventore
-                  quis provident placeat fugiat!
-                </p>
+                <p className="testimonial__desc">Buyer Reviews</p>
 
                 <TestimonialSlider />
               </div>

@@ -23,10 +23,7 @@ const nav__links = [
     display: "Cart",
     path: "/cart",
   },
-  {
-    display: "Contact",
-    path: "/contact",
-  },
+  
 ];
 
 const Header = ({ role }) => {
@@ -111,14 +108,7 @@ const Header = ({ role }) => {
                         Profile
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        to="/order-tracking"
-                        onClick={() => setToggleUser(false)}
-                      >
-                        Tracking
-                      </Link>
-                    </li>
+                    
                     <li>
                       <Link to="/" onClick={userLogout}>
                         Log out

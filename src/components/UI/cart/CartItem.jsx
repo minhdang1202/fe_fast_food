@@ -4,21 +4,20 @@ import { ListGroupItem } from "reactstrap";
 import "../../../styles/cart-item.css";
 
 import { useDispatch } from "react-redux";
-import product_05_image_01 from "../../../assets/images/product_04.jpg";
 
 import {
   addToCart,
   deleteItem,
-  removeItem,
+  removeItem
 } from "../../../Redux/Actions/CartActions";
 
 const CartItem = ({ item }) => {
   const { _id, name, price, image, quantity, totalPrice } = item;
-
+  
   const dispatch = useDispatch();
 
   const incrementItem = () => {
-    dispatch(addToCart({ _id, name, price, image }));
+    dispatch(addToCart({ _id, name, price, image}));
   };
 
   const decreaseItem = () => {
@@ -32,7 +31,7 @@ const CartItem = ({ item }) => {
   return (
     <ListGroupItem className="border-0 cart__item">
       <div className="cart__item-info d-flex gap-2">
-        <img src={product_05_image_01} alt="product-img" />
+        <img src={image} alt="product-img" />
 
         <div className="cart__product-info w-100 d-flex align-items-center gap-4 justify-content-between">
           <div>

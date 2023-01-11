@@ -53,8 +53,8 @@ const TopTotal = ({ total, totalSale }) => {
               </div>
             ) : (
               <div className="text">
-                <h6 className="mb-1">Profit</h6>
-                <span>{462}</span>
+                {/* <h6 className="mb-1">Profit</h6>
+                <span>{462}</span> */}
               </div>
             )}
           </article>

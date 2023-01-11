@@ -178,12 +178,11 @@ const PlaceOrderScreen = () => {
 };
 
 export const Tr = (props) => {
-  const { name, price, quantity } = props.item;
-
+  const { name, price, quantity,image } = props.item;
   return (
     <tr>
       <td className="text-center cart__img-box">
-        <img src={product_05_image_01} alt="" />
+        <img src={image} alt="abs" />
       </td>
       <td className="text-center">{name}</td>
       <td className="text-center">{price}.000</td>
